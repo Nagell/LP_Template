@@ -104,7 +104,7 @@ gulp.task('pagesPHP', function() {
 
 // Gulp task to minify Image files
 gulp.task('images', function () {
-  return gulp.src('./src/img/*')
+  return gulp.src('./src/img/**/*')
     // Minify the file
     .pipe(imagemin([
       imagemin.gifsicle({interlaced: true}),
@@ -113,18 +113,6 @@ gulp.task('images', function () {
     ]))
     // Output
     .pipe(gulp.dest('./dist/img'))
-});
-
-gulp.task('imagesLogos', function () {
-  return gulp.src('./src/img/logos/*')
-    // Minify the file
-    .pipe(imagemin([
-      imagemin.gifsicle({interlaced: true}),
-      imagemin.jpegtran({progressive: true}),
-      imagemin.optipng({optimizationLevel: 5})
-    ]))
-    // Output
-    .pipe(gulp.dest('./dist/img/logos'))
 });
 
 
@@ -141,6 +129,6 @@ gulp.task('default', gulp.series(
     'styles',
     'HTMLtoPHP',
     /* 'pagesPHP', */
-    'images', 'imagesLogos',
+    'images',
     'cleantmp'
 ));
